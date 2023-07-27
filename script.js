@@ -227,6 +227,18 @@ document.addEventListener('keydown', event => {
         playerRotate(-1);
     }
 });
+document.getElementById('rotate-button').addEventListener('click', () => {
+    playerRotate(-1);
+});
+document.getElementById('right-button').addEventListener('click', () => {
+    playerMove(1);
+});
+document.getElementById('left-button').addEventListener('click', () => {
+    playerMove(-1);
+});
+document.getElementById('down-button').addEventListener('click', () => {
+    playerDrop();
+});
 
 playerReset();
 update();
