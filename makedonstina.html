@@ -10,45 +10,96 @@
 <style>
 :root{--bg:#f5efe5;--card:#fffaf3;--text:#211b1b;--muted:#786c68;--red:#a91f27;--line:#ded3c8}
 @media(prefers-color-scheme:dark){:root{--bg:#161111;--card:#241c1c;--text:#fff7ee;--muted:#b8aaa4;--red:#ff646b;--line:#463939}}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 100% 0,#7d4b171f,transparent 38%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:850px;margin:auto;padding:22px 16px 48px}header{padding:12px 4px 14px}.eyebrow{color:var(--red);font-weight:900;letter-spacing:.1em;font-size:.8rem}h1{font-size:clamp(2.15rem,10vw,4.2rem);line-height:.95;letter-spacing:-.055em;margin:12px 0}.lead{color:var(--muted);line-height:1.5;margin:0;max-width:640px}.tip{margin:20px 0;padding:15px;border:1px solid var(--line);border-radius:17px;background:var(--card);line-height:1.45;color:var(--muted)}.tip b{color:var(--red)}.top{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0 24px}.quick,.card,.numbers,details{border:1px solid var(--line);border-radius:17px;background:var(--card)}.quick{padding:14px;min-height:118px}.quick .cz{font-size:.86rem}.quick .mk{font-size:1.35rem}.toolbar{position:sticky;top:0;z-index:4;padding:10px 0 12px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px)}input{width:100%;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:13px 14px;font-size:1rem;outline:none}.chips{display:flex;gap:7px;overflow:auto;padding:9px 0 0;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 11px;font-weight:800}.chip.on{background:var(--red);border-color:var(--red);color:#fff}#count{font-size:.84rem;color:var(--muted);margin:3px 2px 10px}.cards{display:grid;gap:10px}.card{padding:15px}.row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.cat{color:var(--red);font-size:.72rem;text-transform:uppercase;font-weight:900;letter-spacing:.08em}.cz{color:var(--muted);font-weight:750;margin-top:4px}.mk{font-size:clamp(1.42rem,6vw,1.9rem);font-weight:950;line-height:1.12;margin:12px 0 5px}.say{color:var(--red);font-weight:900}.latin{font-size:.83rem;color:var(--muted);margin-top:4px}.buttons{display:flex;gap:6px}.icon{width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--text);font-size:1rem}.icon.playing{background:var(--red);border-color:var(--red);color:#fff}.numbers{margin-top:22px;padding:15px}.numbers h2{font-size:.86rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 10px}.ngrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.n{padding:9px 10px;border:1px solid var(--line);border-radius:12px}.n small{display:block;color:var(--muted);margin-top:2px}details{margin-top:16px;padding:14px}summary{font-weight:900}.abc{color:var(--muted);line-height:1.55;margin-top:10px}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,15px);background:#111;color:#fff;padding:10px 13px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}footer{margin-top:22px;color:var(--muted);font-size:.75rem}@media(min-width:720px){.top{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.ngrid{grid-template-columns:repeat(5,1fr)}}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 100% 0,#7d4b171f,transparent 38%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:850px;margin:auto;padding:22px 16px 48px}header{padding:12px 4px 14px}.eyebrow{color:var(--red);font-weight:900;letter-spacing:.1em;font-size:.8rem}.eyebrow span{margin-right:7px}h1{font-size:clamp(2.15rem,10vw,4.2rem);line-height:.95;letter-spacing:-.055em;margin:12px 0}.lead{color:var(--muted);line-height:1.5;margin:0;max-width:640px}
+.tip{margin:20px 0;padding:15px;border:1px solid var(--line);border-radius:17px;background:var(--card);line-height:1.45;color:var(--muted)}.tip b{color:var(--red)}
+.top{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0 24px}.quick{border:1px solid var(--line);border-radius:17px;background:var(--card);padding:14px;min-height:118px}.quick .cz{color:var(--muted);font-weight:700;font-size:.86rem}.quick .mk{font-size:1.35rem;font-weight:900;margin:9px 0 6px}.say{color:var(--red);font-weight:900}
+.toolbar{position:sticky;top:0;z-index:4;padding:10px 0 12px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px)}input{width:100%;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:13px 14px;font-size:1rem;outline:none}.chips{display:flex;gap:7px;overflow:auto;padding:9px 0 0;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 11px;font-weight:800}.chip.on{background:var(--red);border-color:var(--red);color:#fff}
+#count{font-size:.84rem;color:var(--muted);margin:3px 2px 10px}.cards{display:grid;gap:10px}.card{border:1px solid var(--line);border-radius:18px;background:var(--card);padding:15px}.row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.cat{color:var(--red);font-size:.72rem;text-transform:uppercase;font-weight:900;letter-spacing:.08em}.cz{color:var(--muted);font-weight:750;margin-top:4px}.mk{font-size:clamp(1.42rem,6vw,1.9rem);font-weight:950;line-height:1.12;margin:12px 0 5px}.latin{font-size:.83rem;color:var(--muted);margin-top:4px}.buttons{display:flex;gap:6px}.icon{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--text);font-size:1rem}.numbers{margin-top:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);padding:15px}.numbers h2{font-size:.86rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:0 0 10px}.ngrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.n{padding:9px 10px;border:1px solid var(--line);border-radius:12px}.n small{display:block;color:var(--muted);margin-top:2px}
+details{margin-top:16px;border:1px solid var(--line);border-radius:18px;background:var(--card);padding:14px}summary{font-weight:900}.abc{color:var(--muted);line-height:1.55;margin-top:10px}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,15px);background:#111;color:#fff;padding:10px 13px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}footer{margin-top:22px;color:var(--muted);font-size:.75rem}
+@media(min-width:720px){.top{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.ngrid{grid-template-columns:repeat(5,1fr)}} 
 </style>
 </head>
 <body>
 <main>
-<header><div class="eyebrow">🇲🇰 HONZA + MICHALKA</div><h1>Македонски<br>do kapsy</h1><p class="lead">Základní makedonské fráze. ⧉ zkopíruje makedonský text a 🔊 přehraje makedonskou výslovnost.</p></header>
-<div class="tip">💡 <b>Výslovnost:</b> velká písmena v českém přepisu označují přízvuk. Audio je uložené přímo u stránky, takže funguje i bez externího TTS.</div>
-<section><h2 style="font-size:.86rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)">Šest frází, které fakt využijete</h2><div class="top" id="top"></div></section>
-<div class="toolbar"><input id="q" placeholder="Hledat: pivo, účet, taxi…" autocomplete="off"><div class="chips" id="chips"></div></div><div id="count"></div><div class="cards" id="cards"></div>
-<section class="numbers"><h2>Čísla 1–10</h2><div class="ngrid" id="numbers"></div></section>
-<details><summary>Mini tahák k cyrilici</summary><div class="abc"><b>Ј</b> = j · <b>Ш</b> = š · <b>Ж</b> = ž · <b>Ч</b> = č · <b>Ќ</b> ≈ kj/ť · <b>Ѓ</b> ≈ gj/ď · <b>Љ</b> = lj · <b>Њ</b> = nj.</div></details>
+<header>
+<div class="eyebrow"><span>🇲🇰</span> HONZA + MICHALKA</div>
+<h1>Македонски<br>do kapsy</h1>
+<p class="lead">Základní makedonské fráze na cestu. ⧉ frázi zkopíruje a 🔊 přehraje makedonskou výslovnost.</p>
+</header>
+<div class="tip">💡 <b>Výslovnost:</b> velká písmena označují přízvuk. <b>Č, Š, Ž</b> jako česky; <b>j</b> je české „j“, <b>kj</b> je měkké „ť/kj“.</div>
+<section>
+<h2 style="font-size:.86rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)">Šest frází, které fakt využijete</h2>
+<div class="top" id="top"></div>
+</section>
+<div class="toolbar">
+<input id="q" placeholder="Hledat: pivo, účet, taxi…" autocomplete="off">
+<div class="chips" id="chips"></div>
+</div>
+<div id="count"></div>
+<div class="cards" id="cards"></div>
+<section class="numbers">
+<h2>Čísla 1–10</h2><div class="ngrid" id="numbers"></div>
+</section>
+<details><summary>Mini tahák k cyrilici</summary><div class="abc"><b>Ј</b> = j · <b>Ш</b> = š · <b>Ж</b> = ž · <b>Ч</b> = č · <b>Ќ</b> ≈ kj/ť · <b>Ѓ</b> ≈ gj/ď · <b>Љ</b> = lj · <b>Њ</b> = nj. Makedonština je slovanský jazyk, takže spousta slov začne dávat smysl po pár minutách.</div></details>
 <footer>Praktický cestovní tahák, ne akademický fonetický přepis.</footer>
-</main><div class="toast" id="toast">Zkopírováno</div>
-<script src="mk-audio-1.js"></script>
-<script src="mk-audio-2.js"></script>
+</main>
+<div class="toast" id="toast">Zkopírováno</div>
 <script>
 const P=[
-["Základ","Ahoj","Здраво!","ZDRÁ-vo","Zdravo!",1],["Základ","Dobrý den","Добар ден.","DO-bar den","Dobar den.",0],["Základ","Dobré ráno","Добро утро.","DO-bro U-tro","Dobro utro.",0],["Základ","Děkuji","Благодарам.","bla-GO-da-ram","Blagodaram.",1],["Základ","Prosím","Ве молам.","ve MO-lam","Ve molam.",1],["Základ","Ano / Ne","Да. Не.","da / ne","Da / Ne",0],["Základ","Promiňte","Извинете.","iz-VI-ne-te","Izvinete.",0],["Základ","Nerozumím","Не разбирам.","ne raz-BI-ram","Ne razbiram.",0],["Základ","Mluvíte anglicky?","Зборувате ли англиски?","zbo-RU-va-te li AN-gli-ski?","Zboruvate li angliski?",0],["Základ","Jsme z Česka","Ние сме од Чешка.","NI-je sme od ČEŠ-ka","Nie sme od Češka.",0],["Základ","Já jsem Honza a tohle je Michalka","Јас сум Хонза, а ова е Михалка.","jas sum HON-za, a O-va e mi-HAL-ka","Jas sum Honza, a ova e Mihalka.",0],
-["Jídlo & pití","Dvě piva, prosím","Две пива, ве молам.","dve PI-va, ve MO-lam","Dve piva, ve molam.",1],["Jídlo & pití","Dvě sklenky vína, prosím","Две чаши вино, ве молам.","dve ČA-ši VI-no, ve MO-lam","Dve čaši vino, ve molam.",0],["Jídlo & pití","Červené víno, prosím","Црвено вино, ве молам.","CR-ve-no VI-no, ve MO-lam","Crveno vino, ve molam.",0],["Jídlo & pití","Bílé víno, prosím","Бело вино, ве молам.","BE-lo VI-no, ve MO-lam","Belo vino, ve molam.",0],["Jídlo & pití","Vodu, prosím","Вода, ве молам.","VO-da, ve MO-lam","Voda, ve molam.",0],["Jídlo & pití","Jídelní lístek, prosím","Менито, ве молам.","me-NI-to, ve MO-lam","Menito, ve molam.",0],["Jídlo & pití","Účet, prosím","Сметката, ве молам.","SMET-ka-ta, ve MO-lam","Smetkata, ve molam.",1],["Jídlo & pití","Přijímáte karty?","Дали прифаќате картички?","DA-li pri-FA-kja-te KAR-tič-ki?","Dali prifakjate kartički?",0],["Jídlo & pití","Na zdraví!","На здравје!","na ZDRAV-je","Na zdravje!",1],["Jídlo & pití","Je to moc dobré!","Многу е вкусно!","MNO-gu e VKUS-no!","Mnogu e vkusno!",0],
-["Po městě","Kde je toaleta?","Каде е тоалетот?","KA-de e to-a-LE-tot?","Kade e toaletot?",0],["Po městě","Do centra, prosím","До центарот, ве молам.","do CEN-ta-rot, ve MO-lam","Do centarot, ve molam.",0],["Po městě","Tady, prosím","Тука, ве молам.","TU-ka, ve MO-lam","Tuka, ve molam.",0],["Po městě","Vlevo / vpravo / rovně","Лево. Десно. Право.","LE-vo / DES-no / PRA-vo","Levo / Desno / Pravo",0],["Po městě","Kolik to stojí?","Колку чини ова?","KOL-ku ČI-ni O-va?","Kolku čini ova?",0],["Po městě","Je to daleko?","Далеку ли е?","DA-le-ku li e?","Daleku li e?",0],["Po městě","Potřebuji taxi","Ми треба такси.","mi TRE-ba TAK-si","Mi treba taksi.",0],
-["Ubytování","Máte volný pokoj pro dva?","Имате ли слободна соба за двајца?","I-ma-te li SLO-bod-na SO-ba za DVAJ-ca?","Imate li slobodna soba za dvajca?",0],["Ubytování","Kolik stojí jedna noc?","Колку чини една ноќ?","KOL-ku ČI-ni ED-na nokj?","Kolku čini edna nokj?",0],["Nouze","Pomoc!","Помош!","PO-moš!","Pomoš!",0],["Nouze","Potřebuji lékaře","Ми треба лекар.","mi TRE-ba LE-kar","Mi treba lekar.",0],["Nouze","Zavolejte záchranku","Повикајте брза помош.","po-VI-kaj-te BR-za PO-moš","Povikajte brza pomoš.",0],["Nouze","Kde je lékárna?","Каде е аптеката?","KA-de e ap-TE-ka-ta?","Kade e aptekata?",0]];
+["Základ","Ahoj","Здраво!","ZDRÁ-vo","Zdravo!",1],
+["Základ","Dobrý den","Добар ден.","DO-bar den","Dobar den.",0],
+["Základ","Dobré ráno","Добро утро.","DO-bro U-tro","Dobro utro.",0],
+["Základ","Děkuji","Благодарам.","bla-GO-da-ram","Blagodaram.",1],
+["Základ","Prosím","Ве молам.","ve MO-lam","Ve molam.",1],
+["Základ","Ano / Ne","Да / Не","da / ne","Da / Ne",0],
+["Základ","Promiňte","Извинете.","iz-VI-ne-te","Izvinete.",0],
+["Základ","Nerozumím","Не разбирам.","ne raz-BI-ram","Ne razbiram.",0],
+["Základ","Mluvíte anglicky?","Зборувате ли англиски?","zbo-RU-va-te li AN-gli-ski?","Zboruvate li angliski?",0],
+["Základ","Jsme z Česka","Ние сме од Чешка.","NI-je sme od ČEŠ-ka","Nie sme od Češka.",0],
+["Základ","Já jsem Honza a tohle je Michalka","Јас сум Хонза, а ова е Михалка.","jas sum HON-za, a O-va e mi-HAL-ka","Jas sum Honza, a ova e Mihalka.",0],
+["Jídlo & pití","Dvě piva, prosím","Две пива, ве молам.","dve PI-va, ve MO-lam","Dve piva, ve molam.",1],
+["Jídlo & pití","Dvě sklenky vína, prosím","Две чаши вино, ве молам.","dve ČA-ši VI-no, ve MO-lam","Dve čaši vino, ve molam.",0],
+["Jídlo & pití","Červené víno, prosím","Црвено вино, ве молам.","CR-ve-no VI-no, ve MO-lam","Crveno vino, ve molam.",0],
+["Jídlo & pití","Bílé víno, prosím","Бело вино, ве молам.","BE-lo VI-no, ve MO-lam","Belo vino, ve molam.",0],
+["Jídlo & pití","Vodu, prosím","Вода, ве молам.","VO-da, ve MO-lam","Voda, ve molam.",0],
+["Jídlo & pití","Jídelní lístek, prosím","Менито, ве молам.","me-NI-to, ve MO-lam","Menito, ve molam.",0],
+["Jídlo & pití","Účet, prosím","Сметката, ве молам.","SMET-ka-ta, ve MO-lam","Smetkata, ve molam.",1],
+["Jídlo & pití","Přijímáte karty?","Дали прифаќате картички?","DA-li pri-FA-kja-te KAR-tič-ki?","Dali prifakjate kartički?",0],
+["Jídlo & pití","Na zdraví!","На здравје!","na ZDRAV-je","Na zdravje!",1],
+["Jídlo & pití","Je to moc dobré!","Многу е вкусно!","MNO-gu e VKUS-no!","Mnogu e vkusno!",0],
+["Po městě","Kde je toaleta?","Каде е тоалетот?","KA-de e to-a-LE-tot?","Kade e toaletot?",0],
+["Po městě","Do centra, prosím","До центарот, ве молам.","do CEN-ta-rot, ve MO-lam","Do centarot, ve molam.",0],
+["Po městě","Tady, prosím","Тука, ве молам.","TU-ka, ve MO-lam","Tuka, ve molam.",0],
+["Po městě","Vlevo / vpravo / rovně","Лево / Десно / Право","LE-vo / DES-no / PRA-vo","Levo / Desno / Pravo",0],
+["Po městě","Kolik to stojí?","Колку чини ова?","KOL-ku ČI-ni O-va?","Kolku čini ova?",0],
+["Po městě","Je to daleko?","Далеку ли е?","DA-le-ku li e?","Daleku li e?",0],
+["Po městě","Potřebuji taxi","Ми треба такси.","mi TRE-ba TAK-si","Mi treba taksi.",0],
+["Ubytování","Máte volný pokoj pro dva?","Имате ли слободна соба за двајца?","I-ma-te li SLO-bod-na SO-ba za DVAJ-ca?","Imate li slobodna soba za dvajca?",0],
+["Ubytování","Kolik stojí jedna noc?","Колку чини една ноќ?","KOL-ku ČI-ni ED-na nokj?","Kolku čini edna nokj?",0],
+["Nouze","Pomoc!","Помош!","PO-moš!","Pomoš!",0],
+["Nouze","Potřebuji lékaře","Ми треба лекар.","mi TRE-ba LE-kar","Mi treba lekar.",0],
+["Nouze","Zavolejte záchranku","Повикајте брза помош.","po-VI-kaj-te BR-za PO-moš","Povikajte brza pomoš.",0],
+["Nouze","Kde je lékárna?","Каде е аптеката?","KA-de e ap-TE-ka-ta?","Kade e aptekata?",0]
+];
 const N=[["1","Еден","E-den"],["2","Два","dva"],["3","Три","tri"],["4","Четири","ČE-ti-ri"],["5","Пет","pet"],["6","Шест","šest"],["7","Седум","SE-dum"],["8","Осум","O-sum"],["9","Девет","DE-vet"],["10","Десет","DE-set"]];
-let cat="Vše",currentAudio=null,currentButton=null;const cats=["Vše",...new Set(P.map(x=>x[0]))],icons={"Vše":"✦","Základ":"👋","Jídlo & pití":"🍷","Po městě":"↗","Ubytování":"⌂","Nouze":"⚠"};
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-function toast(t){let x=document.querySelector("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1400)}
+let cat="Vše"; const cats=["Vše",...new Set(P.map(x=>x[0]))], icons={"Vše":"✦","Základ":"👋","Jídlo & pití":"🍷","Po městě":"↗","Ubytování":"⌂","Nouze":"⚠"};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+function toast(t){let x=document.querySelector("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1100)}
 async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){let a=document.createElement("textarea");a.value=t;document.body.append(a);a.select();document.execCommand("copy");a.remove()}toast("Zkopírováno")}
-function play(i,b){
- if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;if(currentButton)currentButton.classList.remove("playing")}
- const data=window.MK_AUDIO&&window.MK_AUDIO[String(i)];
- if(!data){toast("Zvuk pro tuhle frázi chybí");return}
- const a=new Audio("data:audio/mpeg;base64,"+data);currentAudio=a;currentButton=b;b.classList.add("playing");
- const done=()=>{b.classList.remove("playing");if(currentAudio===a){currentAudio=null;currentButton=null}};
- a.onended=done;a.onerror=()=>{done();toast("Zvuk se nepodařilo přehrát")};
- a.play().catch(()=>{done();toast("Zvuk se nepodařilo přehrát")});
+let currentAudio=null;
+function speak(i){
+  if(currentAudio){currentAudio.pause();currentAudio.currentTime=0}
+  const a=new Audio(`audio/${i}.mp3`);
+  currentAudio=a;
+  a.play().catch(()=>toast("Zvuk se nepodařilo přehrát"));
 }
 function renderTop(){document.querySelector("#top").innerHTML=P.filter(x=>x[5]).slice(0,6).map(x=>`<div class="quick"><div class="cz">${esc(x[1])}</div><div class="mk" lang="mk">${esc(x[2])}</div><div class="say">${esc(x[3])}</div></div>`).join("")}
-function renderChips(){document.querySelector("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${esc(c)}">${icons[c]||"•"} ${esc(c)}</button>`).join("");document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{cat=b.dataset.cat;renderChips();render()})}
-function render(){let q=norm(document.querySelector("#q").value),v=P.map((x,i)=>[x,i]).filter(([x])=>(cat==="Vše"||x[0]===cat)&&(!q||norm(x.join(" ")).includes(q)));document.querySelector("#count").textContent=`${v.length} frází`;document.querySelector("#cards").innerHTML=v.map(([x,i])=>`<article class="card"><div class="row"><div><div class="cat">${icons[x[0]]||"•"} ${esc(x[0])}</div><div class="cz">${esc(x[1])}</div></div><div class="buttons"><button class="icon" data-play="${i}" aria-label="Přehrát makedonskou výslovnost">🔊</button><button class="icon" data-copy="${esc(x[2])}">⧉</button></div></div><div class="mk" lang="mk">${esc(x[2])}</div><div class="say">${esc(x[3])}</div><div class="latin">latinkou: ${esc(x[4])}</div></article>`).join("");document.querySelectorAll("[data-play]").forEach(b=>b.onclick=()=>play(Number(b.dataset.play),b));document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copy(b.dataset.copy))}
-document.querySelector("#numbers").innerHTML=N.map(x=>`<div class="n"><b>${x[0]} · ${x[1]}</b><small>${x[2]}</small></div>`).join("");document.querySelector("#q").oninput=render;renderTop();renderChips();render();
+function renderChips(){document.querySelector("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${esc(c)}">${icons[c]||"•"} ${esc(c)}</button>`).join("");document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cat=b.dataset.c;renderChips();render()})}
+function render(){let q=norm(document.querySelector("#q").value),v=P.map((x,i)=>[x,i]).filter(([x])=>(cat==="Vše"||x[0]===cat)&&(!q||norm(x.join(" ")).includes(q)));document.querySelector("#count").textContent=`${v.length} frází`;document.querySelector("#cards").innerHTML=v.map(([x,i])=>`<article class="card"><div class="row"><div><div class="cat">${icons[x[0]]||"•"} ${esc(x[0])}</div><div class="cz">${esc(x[1])}</div></div><div class="buttons"><button class="icon" data-s="${i}" aria-label="Přehrát makedonskou výslovnost">🔊</button><button class="icon" data-c="${esc(x[2])}">⧉</button></div></div><div class="mk" lang="mk">${esc(x[2])}</div><div class="say">${esc(x[3])}</div><div class="latin">latinkou: ${esc(x[4])}</div></article>`).join("");document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>speak(Number(b.dataset.s)));document.querySelectorAll(".icon[data-c]").forEach(b=>b.onclick=()=>copy(b.dataset.c))}
+document.querySelector("#numbers").innerHTML=N.map(x=>`<div class="n"><b>${x[0]} · ${x[1]}</b><small>${x[2]}</small></div>`).join("");
+document.querySelector("#q").oninput=render;renderTop();renderChips();render();
 </script>
 </body>
 </html>
