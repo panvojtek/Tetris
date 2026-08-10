@@ -16,13 +16,15 @@
 <body>
 <main>
 <header><div class="eyebrow">🇲🇰 HONZA + MICHALKA</div><h1>Македонски<br>do kapsy</h1><p class="lead">Základní makedonské fráze. ⧉ zkopíruje makedonský text a 🔊 přehraje makedonskou výslovnost.</p></header>
-<div class="tip">💡 <b>Výslovnost:</b> velká písmena v českém přepisu označují přízvuk. Zvuk se načítá jako makedonština, takže už nepoužívá anglický hlas iPhonu.</div>
+<div class="tip">💡 <b>Výslovnost:</b> velká písmena v českém přepisu označují přízvuk. Audio je uložené přímo u stránky, takže funguje i bez externího TTS.</div>
 <section><h2 style="font-size:.86rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)">Šest frází, které fakt využijete</h2><div class="top" id="top"></div></section>
 <div class="toolbar"><input id="q" placeholder="Hledat: pivo, účet, taxi…" autocomplete="off"><div class="chips" id="chips"></div></div><div id="count"></div><div class="cards" id="cards"></div>
 <section class="numbers"><h2>Čísla 1–10</h2><div class="ngrid" id="numbers"></div></section>
 <details><summary>Mini tahák k cyrilici</summary><div class="abc"><b>Ј</b> = j · <b>Ш</b> = š · <b>Ж</b> = ž · <b>Ч</b> = č · <b>Ќ</b> ≈ kj/ť · <b>Ѓ</b> ≈ gj/ď · <b>Љ</b> = lj · <b>Њ</b> = nj.</div></details>
 <footer>Praktický cestovní tahák, ne akademický fonetický přepis.</footer>
 </main><div class="toast" id="toast">Zkopírováno</div>
+<script src="mk-audio-1.js"></script>
+<script src="mk-audio-2.js"></script>
 <script>
 const P=[
 ["Základ","Ahoj","Здраво!","ZDRÁ-vo","Zdravo!",1],["Základ","Dobrý den","Добар ден.","DO-bar den","Dobar den.",0],["Základ","Dobré ráno","Добро утро.","DO-bro U-tro","Dobro utro.",0],["Základ","Děkuji","Благодарам.","bla-GO-da-ram","Blagodaram.",1],["Základ","Prosím","Ве молам.","ve MO-lam","Ve molam.",1],["Základ","Ano / Ne","Да. Не.","da / ne","Da / Ne",0],["Základ","Promiňte","Извинете.","iz-VI-ne-te","Izvinete.",0],["Základ","Nerozumím","Не разбирам.","ne raz-BI-ram","Ne razbiram.",0],["Základ","Mluvíte anglicky?","Зборувате ли англиски?","zbo-RU-va-te li AN-gli-ski?","Zboruvate li angliski?",0],["Základ","Jsme z Česka","Ние сме од Чешка.","NI-je sme od ČEŠ-ka","Nie sme od Češka.",0],["Základ","Já jsem Honza a tohle je Michalka","Јас сум Хонза, а ова е Михалка.","jas sum HON-za, a O-va e mi-HAL-ka","Jas sum Honza, a ova e Mihalka.",0],
@@ -32,12 +34,21 @@ const P=[
 const N=[["1","Еден","E-den"],["2","Два","dva"],["3","Три","tri"],["4","Четири","ČE-ti-ri"],["5","Пет","pet"],["6","Шест","šest"],["7","Седум","SE-dum"],["8","Осум","O-sum"],["9","Девет","DE-vet"],["10","Десет","DE-set"]];
 let cat="Vše",currentAudio=null,currentButton=null;const cats=["Vše",...new Set(P.map(x=>x[0]))],icons={"Vše":"✦","Základ":"👋","Jídlo & pití":"🍷","Po městě":"↗","Ubytování":"⌂","Nouze":"⚠"};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));const norm=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-function toast(t){let x=document.querySelector("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1100)}
+function toast(t){let x=document.querySelector("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1400)}
 async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){let a=document.createElement("textarea");a.value=t;document.body.append(a);a.select();document.execCommand("copy");a.remove()}toast("Zkopírováno")}
-function play(text,b){if(currentAudio){currentAudio.pause();if(currentButton)currentButton.classList.remove("playing")}const url="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=mk&q="+encodeURIComponent(text);const a=new Audio(url);currentAudio=a;currentButton=b;b.classList.add("playing");a.onended=a.onerror=()=>{b.classList.remove("playing");if(currentAudio===a){currentAudio=null;currentButton=null}};a.play().catch(()=>{b.classList.remove("playing");toast("Zvuk se nepodařilo přehrát")})}
+function play(i,b){
+ if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;if(currentButton)currentButton.classList.remove("playing")}
+ const data=window.MK_AUDIO&&window.MK_AUDIO[String(i)];
+ if(!data){toast("Zvuk pro tuhle frázi chybí");return}
+ const a=new Audio("data:audio/mpeg;base64,"+data);currentAudio=a;currentButton=b;b.classList.add("playing");
+ const done=()=>{b.classList.remove("playing");if(currentAudio===a){currentAudio=null;currentButton=null}};
+ a.onended=done;a.onerror=()=>{done();toast("Zvuk se nepodařilo přehrát")};
+ a.play().catch(()=>{done();toast("Zvuk se nepodařilo přehrát")});
+}
 function renderTop(){document.querySelector("#top").innerHTML=P.filter(x=>x[5]).slice(0,6).map(x=>`<div class="quick"><div class="cz">${esc(x[1])}</div><div class="mk" lang="mk">${esc(x[2])}</div><div class="say">${esc(x[3])}</div></div>`).join("")}
 function renderChips(){document.querySelector("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"on":""}" data-cat="${esc(c)}">${icons[c]||"•"} ${esc(c)}</button>`).join("");document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{cat=b.dataset.cat;renderChips();render()})}
-function render(){let q=norm(document.querySelector("#q").value),v=P.filter(x=>(cat==="Vše"||x[0]===cat)&&(!q||norm(x.join(" ")).includes(q)));document.querySelector("#count").textContent=`${v.length} frází`;document.querySelector("#cards").innerHTML=v.map(x=>`<article class="card"><div class="row"><div><div class="cat">${icons[x[0]]||"•"} ${esc(x[0])}</div><div class="cz">${esc(x[1])}</div></div><div class="buttons"><button class="icon" data-play="${esc(x[2])}" aria-label="Přehrát makedonskou výslovnost">🔊</button><button class="icon" data-copy="${esc(x[2])}" aria-label="Zkopírovat">⧉</button></div></div><div class="mk" lang="mk">${esc(x[2])}</div><div class="say">${esc(x[3])}</div><div class="latin">latinkou: ${esc(x[4])}</div></article>`).join("");document.querySelectorAll("[data-play]").forEach(b=>b.onclick=()=>play(b.dataset.play,b));document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copy(b.dataset.copy))}
+function render(){let q=norm(document.querySelector("#q").value),v=P.map((x,i)=>[x,i]).filter(([x])=>(cat==="Vše"||x[0]===cat)&&(!q||norm(x.join(" ")).includes(q)));document.querySelector("#count").textContent=`${v.length} frází`;document.querySelector("#cards").innerHTML=v.map(([x,i])=>`<article class="card"><div class="row"><div><div class="cat">${icons[x[0]]||"•"} ${esc(x[0])}</div><div class="cz">${esc(x[1])}</div></div><div class="buttons"><button class="icon" data-play="${i}" aria-label="Přehrát makedonskou výslovnost">🔊</button><button class="icon" data-copy="${esc(x[2])}">⧉</button></div></div><div class="mk" lang="mk">${esc(x[2])}</div><div class="say">${esc(x[3])}</div><div class="latin">latinkou: ${esc(x[4])}</div></article>`).join("");document.querySelectorAll("[data-play]").forEach(b=>b.onclick=()=>play(Number(b.dataset.play),b));document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copy(b.dataset.copy))}
 document.querySelector("#numbers").innerHTML=N.map(x=>`<div class="n"><b>${x[0]} · ${x[1]}</b><small>${x[2]}</small></div>`).join("");document.querySelector("#q").oninput=render;renderTop();renderChips();render();
 </script>
-</body></html>
+</body>
+</html>
