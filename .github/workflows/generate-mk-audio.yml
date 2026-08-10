@@ -1,0 +1,45 @@
+name: Generate Macedonian audio
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'mk-phrases.txt'
+      - '.github/workflows/generate-mk-audio.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install edge-tts
+        run: pip install edge-tts
+      - name: Generate MP3 files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf audio
+          mkdir -p audio
+          i=0
+          while IFS= read -r phrase || [ -n "$phrase" ]; do
+            [ -z "$phrase" ] && continue
+            edge-tts --voice mk-MK-MarijaNeural --rate=-8% --text "$phrase" --write-media "audio/${i}.mp3"
+            i=$((i+1))
+          done < mk-phrases.txt
+      - name: Commit generated audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio
+          if git diff --cached --quiet; then
+            echo "No audio changes"
+          else
+            git commit -m "Generate high-quality Macedonian neural audio"
+            git push
+          fi
